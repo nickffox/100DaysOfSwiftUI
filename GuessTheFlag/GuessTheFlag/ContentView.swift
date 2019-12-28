@@ -31,6 +31,9 @@ struct ContentView: View {
   @State private var alertMessage: String = ""
   @State private var score: Int = 0
 
+  @State private var incorrectOpacity: Double = 1
+  @State private var rotationAmount: Double = 0
+
   private func flagTapped(_ index: Int) {
     if index == correctAnswer {
       scoreTitle = "Correct"
@@ -39,12 +42,14 @@ struct ContentView: View {
     } else {
       scoreTitle = "Wrong"
       score = 0
-      alertMessage = "You chose the flag of \(countries[index])" 
+      alertMessage = "You chose the flag of \(countries[index])"
     }
     showingScore = true
   }
 
   private func askQuestion() {
+    incorrectOpacity = 1.0
+    rotationAmount = 0
     countries.shuffle()
     correctAnswer = Int.random(in: 0...2)
   }
@@ -73,6 +78,12 @@ struct ContentView: View {
           Button(
             action: {
               self.flagTapped(number)
+              withAnimation {
+                if number == self.correctAnswer {
+                  self.rotationAmount += 365
+                }
+                self.incorrectOpacity = 0.25
+              }
             },
             label: {
               Image(self.countries[number])
@@ -81,6 +92,11 @@ struct ContentView: View {
                 .overlay(Capsule().stroke(Color.black, lineWidth: 1))
                 .shadow(color: .black, radius: 2)
             }
+          )
+          .opacity(number == self.correctAnswer ? 1.0 : self.incorrectOpacity)
+          .rotation3DEffect(
+            .degrees(number == self.correctAnswer ? self.rotationAmount : 0),
+              axis: (x: 0, y: 1, z: 0)
           )
         }
 
