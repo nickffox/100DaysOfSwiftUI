@@ -21,6 +21,16 @@ struct ExpenseView: View {
       Spacer()
       Text("$\(expense.amount)")
     }
+    .foregroundColor(getColor(for: expense))
+  }
+
+  private func getColor(for expense: ExpenseItem) -> Color {
+    switch expense.amount {
+    case ..<10: return .green
+    case 10..<100: return .yellow
+    case 100...: return .red
+    default: fatalError()
+    }
   }
 }
 

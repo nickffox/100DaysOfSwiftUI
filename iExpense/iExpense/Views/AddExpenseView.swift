@@ -19,6 +19,8 @@ struct AddExpenseView: View {
   @State private var type: String = "Personal"
   @State private var amount: String = ""
 
+  @State private var isShowingError = false
+
   private static let expenseTypes = ["Personal", "Business"]
 
   var body: some View {
@@ -33,10 +35,14 @@ struct AddExpenseView: View {
         TextField("Amount", text: $amount)
           .keyboardType(.numberPad)
       }
+      .alert(isPresented: $isShowingError, content: makeErrorAlert)
       .navigationBarTitle("Add New Expense")
       .navigationBarItems(trailing:
         Button(action: {
-          guard let realAmount = Int(self.amount) else { return }
+          guard let realAmount = Int(self.amount) else {
+            self.isShowingError = true
+            return
+          }
           let expense = ExpenseItem(
             name: self.name,
             type: self.type,
@@ -48,6 +54,13 @@ struct AddExpenseView: View {
         }
       )
     }
+  }
+
+  private func makeErrorAlert() -> Alert {
+    return Alert(
+      title: Text("Amount is invalid"),
+      message: Text("The amount you entered isn't an integer. Please enter an integer."),
+      dismissButton: .default(Text("OK")))
   }
 }
 

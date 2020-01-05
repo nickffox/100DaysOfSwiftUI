@@ -31,11 +31,15 @@ struct ExpenseListView: View {
           Text("Clear All")
         }
       )
+
       .navigationBarItems(trailing:
-        Button(action: {
-          self.isShowingAddExpense = true
-        }) {
-          Image(systemName: "plus")
+        HStack {
+          EditButton()
+          Button(action: {
+            self.isShowingAddExpense = true
+          }) {
+            Image(systemName: "plus")
+          }
         }
       )
       .sheet(isPresented: $isShowingAddExpense) {
