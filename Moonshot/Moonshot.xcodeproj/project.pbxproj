@@ -18,6 +18,8 @@
 		88BF1F4F23C46E4B00CB26F8 /* Astronaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF1F4E23C46E4B00CB26F8 /* Astronaut.swift */; };
 		88BF1F5123C46E8800CB26F8 /* Bundle+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF1F5023C46E8800CB26F8 /* Bundle+Decodable.swift */; };
 		88BF1F5323C46FA500CB26F8 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF1F5223C46FA500CB26F8 /* Mission.swift */; };
+		88BF1F5523C4746500CB26F8 /* MissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF1F5423C4746500CB26F8 /* MissionView.swift */; };
+		88BF1F5723C4793600CB26F8 /* AstronautView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF1F5623C4793600CB26F8 /* AstronautView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		88BF1F4E23C46E4B00CB26F8 /* Astronaut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Astronaut.swift; sourceTree = "<group>"; };
 		88BF1F5023C46E8800CB26F8 /* Bundle+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Decodable.swift"; sourceTree = "<group>"; };
 		88BF1F5223C46FA500CB26F8 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		88BF1F5423C4746500CB26F8 /* MissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionView.swift; sourceTree = "<group>"; };
+		88BF1F5623C4793600CB26F8 /* AstronautView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				88BF1E8623C46CC300CB26F8 /* ContentView.swift */,
+				88BF1F5423C4746500CB26F8 /* MissionView.swift */,
+				88BF1F5623C4793600CB26F8 /* AstronautView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,7 +193,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88BF1F5523C4746500CB26F8 /* MissionView.swift in Sources */,
 				88BF1F5323C46FA500CB26F8 /* Mission.swift in Sources */,
+				88BF1F5723C4793600CB26F8 /* AstronautView.swift in Sources */,
 				88BF1E8323C46CC300CB26F8 /* AppDelegate.swift in Sources */,
 				88BF1F5123C46E8800CB26F8 /* Bundle+Decodable.swift in Sources */,
 				88BF1E8523C46CC300CB26F8 /* SceneDelegate.swift in Sources */,
