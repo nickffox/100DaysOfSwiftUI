@@ -13,11 +13,14 @@ struct ContentView: View {
   let astronauts: [Astronaut] = Bundle.main.decode("astronauts.json")
   let missions: [Mission] = Bundle.main.decode("missions.json")
 
+  @State private var isShowingCrew = false
+
   var body: some View {
 
     NavigationView {
       List(missions) { mission in
-        NavigationLink(destination: MissionView(mission: mission, astronauts: self.astronauts)) {
+        NavigationLink(destination: MissionView(mission: mission, astronauts: self.astronauts, missions: self.missions)) {
+
           Image(mission.imageName)
             .resizable()
             .aspectRatio(contentMode: .fit)
@@ -26,12 +29,35 @@ struct ContentView: View {
           VStack(alignment: .leading) {
             Text(mission.displayName)
               .font(.headline)
-            Text(mission.formattedLaunchDate)
+            if !self.isShowingCrew {
+              Text(mission.formattedLaunchDate)
+            }
+
+            if self.isShowingCrew {
+              ForEach(mission.crew, id: \Mission.CrewRole.name) { crew in
+                self.astronaut(id: crew.name).map { Text($0.name) }
+              }
+            }
           }
         }
       }
+      .navigationBarItems(trailing:
+        Button(
+          action: { self.isShowingCrew.toggle() },
+          label: {
+            if self.isShowingCrew {
+              Text("Show Launch Dates")
+            } else {
+              Text("Show Crew")
+            }
+          })
+      )
       .navigationBarTitle("Moonshot")
     }
+  }
+
+  func astronaut(id: String) -> Astronaut? {
+    return astronauts.first(where: { $0.id == id })
   }
 }
 
